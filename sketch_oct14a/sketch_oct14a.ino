@@ -62,11 +62,33 @@ void loop()
       digitalWrite(LEDS [i], LOW);
   		}
     }
-    
+    buzzer(lectura);
   
   delay(100);
 }
 
 int porcentaje (float value) {
   return round(value / 1023 * 100);
+}
+
+void buzzer(int sensorValue){
+  if(sensorValue < 20){
+    tone(BUZZER, 1000, 500);
+    noTone(BUZZER);
+    delay (100);
+    
+  } else if (sensorValue > 80){
+    tone(BUZZER, 2000);
+  
+  desAlarma(sensorValue);
+  } else if (sensorValue > 20 && sensorValue < 80){
+  noTone(BUZZER);
+  }
+}
+
+void desAlarma(int sensorValue){
+  if (sensorValue > 80 && digitalRead(BUTTON) == true){
+  delay(5000);
+  }
+  
 }
