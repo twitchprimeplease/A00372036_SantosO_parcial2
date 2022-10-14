@@ -88,6 +88,7 @@ void buzzer(int sensorValue){
 
 void desAlarma(int sensorValue){
   if (sensorValue > 80 && digitalRead(BUTTON) == true){
+    noTone(BUZZER);
   delay(5000);
   }
   
